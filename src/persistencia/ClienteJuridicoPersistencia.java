@@ -36,7 +36,7 @@ public class ClienteJuridicoPersistencia implements CRUD {
      {
          String msg = null;
                 for (ClientesJuridicos a :lista) {
-                  msg+= a.desmontarObjeto();
+                  msg+= a.desmontarObjeto()+"\n";
    
         }
      return msg;
