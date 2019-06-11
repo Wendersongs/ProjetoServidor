@@ -34,7 +34,7 @@ public class ClienteJuridicoPersistencia implements CRUD {
     }
     public String retornaArraycomoString(ArrayList<ClientesJuridicos> lista)
      {
-         String msg = null;
+         String msg = "";
                 for (ClientesJuridicos a :lista) {
                   msg+= a.desmontarObjeto()+"\n";
    
