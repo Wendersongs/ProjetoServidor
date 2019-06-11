@@ -10,34 +10,39 @@ import persistencia.MotoristaPersistencia;
 
 public class ControlePersistencia {
    
-    public void execOrdem(String dados) throws Exception{
+    public String execOrdem(String dados) throws Exception{
         String[] informacao = dados.split("#");
         ClienteJuridicoPersistencia clientePersistencia = new ClienteJuridicoPersistencia("C:\\Desenvolvimento\\PessoaJuridica.txt");
         ClientesJuridicos objetoClientes = new ClientesJuridicos();
+        String msg="";
         switch (informacao[0]){
-            case "ClientesJuridicos": ctrlPersistenciaClientes(informacao[1], informacao[2]);
-            
-            break;
+            case "ClientesJuridicos": msg=ctrlPersistenciaClientes(informacao[1], informacao[2]);
+            return msg;
             case "ClientesFisicos": ctrlPersistenciaClientesFisicos(informacao[1], informacao[2]);
-            break;
+            return msg;
             case "Motoristas": ctrlPersistenciaMotoristas(informacao[1], informacao[2]);
-            break;
+            return msg;
+            default: return "Nenhum caso";
         }
     }
     
-    public void ctrlPersistenciaClientes(String opcao, String dados) throws Exception{
+    public String ctrlPersistenciaClientes(String opcao, String dados) throws Exception{
          ClienteJuridicoPersistencia clientePersistencia = new ClienteJuridicoPersistencia("C:\\Desenvolvimento\\PessoaJuridica.txt");
          ClientesJuridicos objetoClientes = new ClientesJuridicos();
+         String msg = "";
         switch(opcao){
             case "1":
                 
                 objetoClientes.montarObjeto(dados);
                 clientePersistencia.incluir(objetoClientes);
+                msg = "incluído com sucesso";
+                return msg;
             case "2":
                 ArrayList<ClientesJuridicos> pilhaDeClientes = new ArrayList<>();
                 pilhaDeClientes = clientePersistencia.recuperar();
-                String msg = pilhaDeClientes.toString();
-                
+                msg = clientePersistencia.retornaArraycomoString(pilhaDeClientes);
+                return msg;
+            default: return "nenhuma opção";   
         }
     }
      public void ctrlPersistenciaClientesFisicos(String opcao, String dados) throws Exception{

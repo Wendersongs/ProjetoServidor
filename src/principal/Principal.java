@@ -7,14 +7,15 @@ import persistencia.ClienteFisicoPersistencia;
 public class Principal {
     public static void main(String[] args) throws Exception{
         ServidorTCP servidor = new ServidorTCP(7777);
+        String msg = "";
   try{      
         while(true){
             String dados = servidor.receberMsg();
             ControlePersistencia executa = null;
             executa = new ControlePersistencia();
-            executa.execOrdem(dados);
+            msg=executa.execOrdem(dados);
             System.out.println(dados);
-            servidor.enviarMsg("incluido com sucesso");
+            servidor.enviarMsg(msg);
             
         }
   }
