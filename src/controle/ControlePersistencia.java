@@ -12,7 +12,7 @@ public class ControlePersistencia {
    Utils util = new Utils();
     public String execOrdem(String dados) throws Exception{
         String[] informacao = dados.split("#");
-        ClienteJuridicoPersistencia clientePersistencia = new ClienteJuridicoPersistencia("C:\\Desenvolvimento\\PessoaJuridica.txt");
+        ClienteJuridicoPersistencia clientePersistencia = new ClienteJuridicoPersistencia("C:\\desenvolvimento\\PessoaJuridica.txt");
         ClientesJuridicos objetoClientes = new ClientesJuridicos();
         String msg="";
         switch (informacao[0]){
@@ -27,7 +27,7 @@ public class ControlePersistencia {
     }
     
     public String ctrlPersistenciaClientes(String opcao, String dados) throws Exception{
-         ClienteJuridicoPersistencia clientePersistencia = new ClienteJuridicoPersistencia("C:\\Desenvolvimento\\PessoaJuridica.txt");
+         ClienteJuridicoPersistencia clientePersistencia = new ClienteJuridicoPersistencia("C:\\desenvolvimento\\PessoaJuridica.txt");
          ClientesJuridicos objetoClientes = new ClientesJuridicos();
          String msg = "";
         switch(opcao){
@@ -45,7 +45,7 @@ public class ControlePersistencia {
         }
     }
      public void ctrlPersistenciaClientesFisicos(String opcao, String dados) throws Exception{
-        ClienteFisicoPersistencia clienteFisicoPersistencia = new ClienteFisicoPersistencia("C:\\Users\\Kevin\\Desktop\\PessoaFisica.txt");
+        ClienteFisicoPersistencia clienteFisicoPersistencia = new ClienteFisicoPersistencia("C:\\Kevin\\Desktop\\PessoaJuridica.txt");
         switch(opcao){
             case "1":
                 ClientesFisicos objetoClientesFisicos = new ClientesFisicos();
