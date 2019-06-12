@@ -32,7 +32,6 @@ public class ControlePersistencia {
          String msg = "";
         switch(opcao){
             case "1":
-                
                 objetoClientes.montarObjeto(dados);
                 clientePersistencia.incluir(objetoClientes);
                 msg = "incluído com sucesso";
