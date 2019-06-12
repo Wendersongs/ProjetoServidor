@@ -1,4 +1,5 @@
 package persistencia;
+import controle.Utils;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -8,6 +9,7 @@ import modelos.CRUD;
 
 import modelos.ClientesJuridicos;
 public class ClienteJuridicoPersistencia implements CRUD {
+    Utils util = new Utils();
 
     private String nomeDoArquivoNoDisco = null;
 
@@ -25,7 +27,7 @@ public class ClienteJuridicoPersistencia implements CRUD {
             clienteJuri.setId(lastId.toString());
             FileWriter fw = new FileWriter(nomeDoArquivoNoDisco, true);
             BufferedWriter bw = new BufferedWriter(fw);
-            bw.append(clienteJuri.desmontarObjeto() + "\n");
+            bw.append(util.limpaCaracteres(clienteJuri.desmontarObjeto()) + "\n");
             bw.flush();
             bw.close();
         } catch (Exception erro) {
