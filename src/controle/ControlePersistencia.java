@@ -9,7 +9,7 @@ import persistencia.ClienteJuridicoPersistencia;
 import persistencia.MotoristaPersistencia;
 
 public class ControlePersistencia {
-   
+   Utils util = new Utils();
     public String execOrdem(String dados) throws Exception{
         String[] informacao = dados.split("#");
         ClienteJuridicoPersistencia clientePersistencia = new ClienteJuridicoPersistencia("C:\\Desenvolvimento\\PessoaJuridica.txt");
@@ -40,7 +40,7 @@ public class ControlePersistencia {
                 ArrayList<ClientesJuridicos> pilhaDeClientes = new ArrayList<>();
                 pilhaDeClientes = clientePersistencia.recuperar();
                 msg = clientePersistencia.retornaArraycomoString(pilhaDeClientes);
-                return msg;
+                return util.limpaCaracteres(msg);
             default: return "nenhuma opção";   
         }
     }

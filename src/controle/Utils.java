@@ -29,9 +29,9 @@ public class Utils {
 	                .replace('ñ', 'n')   
 	                .replace('Ñ', 'N')
 	                .replaceAll("!", "")	                
-	                .replaceAll ("\\[\\´\\`\\?\\!\\$\\%\\¨\\*","")
-	                .replaceAll("\\(\\)\\=\\{\\}\\[\\]\\~\\^\\]","")
-	                .replaceAll("[\\.\\;\\-\\_\\+\\'\\ª\\º\\:\\;\\/]","");
+                        .replaceAll("\\-", "")
+                        .replaceAll("\\(", "")
+                        .replaceAll("\\)", "");
 	    	
 	}
     
