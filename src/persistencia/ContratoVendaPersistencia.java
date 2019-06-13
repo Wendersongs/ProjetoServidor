@@ -11,42 +11,48 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import modelos.CRUD;
-import modelos.ClientesFisicos;
-public class ClienteFisicoPersistencia implements CRUD {
+import modelos.ContratoVenda;
 
-    
+/**
+ *
+ * @author Kevin
+ */
+public class ContratoVendaPersistencia implements CRUD {
+
+
 
     private String nomeDoArquivoNoDisco = null;
 
-    public ClienteFisicoPersistencia(String nomeDoArquivoNoDisco) {
+    public ContratoVendaPersistencia(String nomeDoArquivoNoDisco) {
         this.nomeDoArquivoNoDisco = nomeDoArquivoNoDisco;
     }
 
     @Override
-     public void incluir(Object objeto) throws Exception {
+    public void incluir(Object objeto) throws Exception {
         try {
             
-            ArrayList<ClientesFisicos> pilhaDeClientes = recuperar();
-            ClientesFisicos ultimoCliente = pilhaDeClientes.get(pilhaDeClientes.size()-1) ;
+            ArrayList<ContratoVenda> pilhaDeClientes = recuperar();
+            ContratoVenda ultimoCliente = pilhaDeClientes.get(pilhaDeClientes.size()-1) ;
             Integer lastId = Integer.parseInt(ultimoCliente.getId())+1;
-            ClientesFisicos clienteFisico = (ClientesFisicos) objeto;
-            if (clienteFisico.getId()=="")
+            ContratoVenda venda = (ContratoVenda) objeto;
+            if (venda.getId()=="")
             {
-            clienteFisico.setId(lastId.toString());
-            }
+            venda.setId(lastId.toString());
+            }            venda.setId(lastId.toString());
+
             FileWriter fw = new FileWriter(nomeDoArquivoNoDisco, true);
             BufferedWriter bw = new BufferedWriter(fw);
-            bw.append(clienteFisico.desmontarObjeto() + "\n");
+            bw.append(venda.desmontarObjeto() + "\n");
             bw.flush();
             bw.close();
         } catch (Exception erro) {
             throw erro;
         }
     }
-    public String retornaArraycomoString(ArrayList<ClientesFisicos> lista)
+    public String retornaArraycomoString(ArrayList<ContratoVenda> lista)
      {
          String msg = "";
-                for (ClientesFisicos a :lista) {
+                for (ContratoVenda a :lista) {
                     
                   msg+= a.desmontarObjeto()+"\n";
                   
@@ -54,14 +60,14 @@ public class ClienteFisicoPersistencia implements CRUD {
         }
      return msg;
     }
-    public ArrayList<ClientesFisicos> recuperar() throws Exception {
+    public ArrayList<ContratoVenda> recuperar() throws Exception {
         try {
-            ArrayList<ClientesFisicos> pilhaDeClientes = new ArrayList<>();
+            ArrayList<ContratoVenda> pilhaDeClientes = new ArrayList<>();
             FileReader fr = new FileReader(nomeDoArquivoNoDisco);
             BufferedReader br = new BufferedReader(fr);
             String linha = "";
             while((linha=br.readLine())!=null){
-                ClientesFisicos objetoClientes = new ClientesFisicos();
+                ContratoVenda objetoClientes = new ContratoVenda();
                 objetoClientes.montarObjeto(linha);
                 pilhaDeClientes.add(objetoClientes);
             }
@@ -71,5 +77,4 @@ public class ClienteFisicoPersistencia implements CRUD {
             throw erro;
         }
     }
-
 }

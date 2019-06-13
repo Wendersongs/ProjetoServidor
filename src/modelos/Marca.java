@@ -13,6 +13,7 @@ public abstract class Marca {
     
     protected String nomeDaMarca;
     protected String enderecoAnexoMarca;
+    protected String id;
 
     /**
      * @return the nomeDaMarca
@@ -40,6 +41,20 @@ public abstract class Marca {
      */
     public void setEnderecoAnexoMarca(String enderecoAnexoMarca) {
         this.enderecoAnexoMarca = enderecoAnexoMarca;
+    }
+
+    /**
+     * @return the id
+     */
+    public String getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
     }
     
 }

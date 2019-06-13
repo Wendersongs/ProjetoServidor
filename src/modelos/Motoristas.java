@@ -10,18 +10,46 @@ package modelos;
  * @author Kevin
  */
 public class Motoristas extends Pessoa implements Dados{
+
+    /**
+     * @return the cnh
+     */
+    public String getCnh() {
+        return cnh;
+    }
+
+    /**
+     * @param cnh the cnh to set
+     */
+    public void setCnh(String cnh) {
+        this.cnh = cnh;
+    }
+
+    /**
+     * @return the enderecoAnexo
+     */
+    public String getEnderecoAnexo() {
+        return enderecoAnexo;
+    }
+
+    /**
+     * @param enderecoAnexo the enderecoAnexo to set
+     */
+    public void setEnderecoAnexo(String enderecoAnexo) {
+        this.enderecoAnexo = enderecoAnexo;
+    }
     private  String cnh;
     private  String enderecoAnexo;
     
     
     
-    public Motoristas(){
-        
+     public Motoristas(){
+         this.id="";
         this.nome="";
         this.cpf="";
         this.cnh="";
         this.enderecoAnexo="";
-        this.id="";
+       
         
         
     }
@@ -39,7 +67,7 @@ public class Motoristas extends Pessoa implements Dados{
 
     @Override
     public String desmontarObjeto() {
-        return this.id+";"+this.nome+";"+this.cpf+";"+this.cnh+";"+this.enderecoAnexo+";";
+        return this.id+";"+this.nome+";"+this.cpf+";"+this.getCnh()+";"+this.getEnderecoAnexo()+";";
     }
 
     @Override
@@ -49,8 +77,8 @@ try {
             this.id=vetorString[0];
             this.nome = vetorString[1];
             this.cpf = vetorString[2];
-            this.cnh = vetorString[3];
-            this.enderecoAnexo = vetorString[4];
+            this.setCnh(vetorString[3]);
+            this.setEnderecoAnexo(vetorString[4]);
             
           
         } catch (Exception e) {

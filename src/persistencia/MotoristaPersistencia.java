@@ -15,11 +15,7 @@ import modelos.ClientesFisicos;
 import modelos.Motoristas;
 public class MotoristaPersistencia implements CRUD {
 
-    public static void incluir() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    private String nomeDoArquivoNoDisco = null;
+private String nomeDoArquivoNoDisco = null;
 
     public MotoristaPersistencia(String nomeDoArquivoNoDisco) {
         this.nomeDoArquivoNoDisco = nomeDoArquivoNoDisco;
@@ -33,8 +29,11 @@ public class MotoristaPersistencia implements CRUD {
             Motoristas ultimoCliente = pilhaDeClientes.get(pilhaDeClientes.size()-1) ;
             Integer lastId = Integer.parseInt(ultimoCliente.getId())+1;
             Motoristas motorista = (Motoristas) objeto;
-             motorista.setId(lastId.toString());
-            FileWriter fw = new FileWriter(nomeDoArquivoNoDisco, false);
+            if (motorista.getId()=="")
+            {
+            motorista.setId(lastId.toString());
+            }
+            FileWriter fw = new FileWriter(nomeDoArquivoNoDisco, true);
             BufferedWriter bw = new BufferedWriter(fw);
             bw.append(motorista.desmontarObjeto() + "\n");
             bw.flush();
@@ -43,7 +42,17 @@ public class MotoristaPersistencia implements CRUD {
             throw erro;
         }
     }
-
+    public String retornaArraycomoString(ArrayList<Motoristas> lista)
+     {
+         String msg = "";
+                for (Motoristas a :lista) {
+                    
+                  msg+= a.desmontarObjeto()+"\n";
+                  
+   
+        }
+     return msg;
+    }
     public ArrayList<Motoristas> recuperar() throws Exception {
         try {
             ArrayList<Motoristas> pilhaDeClientes = new ArrayList<>();
@@ -51,9 +60,9 @@ public class MotoristaPersistencia implements CRUD {
             BufferedReader br = new BufferedReader(fr);
             String linha = "";
             while((linha=br.readLine())!=null){
-                Motoristas objetoMotoristas = new Motoristas();
-                objetoMotoristas.montarObjeto(linha);
-                pilhaDeClientes.add(objetoMotoristas);
+                Motoristas objetoClientes = new Motoristas();
+                objetoClientes.montarObjeto(linha);
+                pilhaDeClientes.add(objetoClientes);
             }
             br.close();
             return pilhaDeClientes;
@@ -61,5 +70,7 @@ public class MotoristaPersistencia implements CRUD {
             throw erro;
         }
     }
+
+    
 
 }

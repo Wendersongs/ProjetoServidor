@@ -10,16 +10,18 @@ package modelos;
  * @author Kevin
  */
 public class Marcas extends Marca implements Dados{
+
+    
     
     public Marcas(){
-         
+        this.id="";
         this.nomeDaMarca="";
         this.enderecoAnexoMarca="";
         
     }
     
-    public Marcas(String nomeDaMarca , String enderecoAnexoMarca){
-         
+    public Marcas(String id, String nomeDaMarca , String enderecoAnexoMarca){
+        this.id=id;
         this.nomeDaMarca=nomeDaMarca;
         this.enderecoAnexoMarca=enderecoAnexoMarca;
         
@@ -31,15 +33,16 @@ public class Marcas extends Marca implements Dados{
 
     @Override
     public String desmontarObjeto() {
-        return this.nomeDaMarca+";"+this.enderecoAnexoMarca+";";
+        return this.id+";"+this.nomeDaMarca+";"+this.enderecoAnexoMarca+"#";
     }
 
     @Override
     public void montarObjeto(String stringDados) throws Exception {
         try {
             String vetorString[] = stringDados.split(";");
-            this.nomeDaMarca = vetorString[0];
-            this.enderecoAnexoMarca = vetorString[1];
+            this.id=vetorString[0];
+            this.nomeDaMarca = vetorString[1];
+            this.enderecoAnexoMarca = vetorString[2];
           
             
           

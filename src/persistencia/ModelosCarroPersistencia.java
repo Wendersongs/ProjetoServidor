@@ -11,42 +11,46 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import modelos.CRUD;
-import modelos.ClientesFisicos;
-public class ClienteFisicoPersistencia implements CRUD {
+import modelos.ModelosCarro;
+import modelos.Motoristas;
 
-    
+/**
+ *
+ * @author Kevin
+ */
+public class ModelosCarroPersistencia implements CRUD {
 
-    private String nomeDoArquivoNoDisco = null;
+private String nomeDoArquivoNoDisco = null;
 
-    public ClienteFisicoPersistencia(String nomeDoArquivoNoDisco) {
+    public ModelosCarroPersistencia(String nomeDoArquivoNoDisco) {
         this.nomeDoArquivoNoDisco = nomeDoArquivoNoDisco;
     }
 
     @Override
-     public void incluir(Object objeto) throws Exception {
+    public void incluir(Object objeto) throws Exception {
         try {
             
-            ArrayList<ClientesFisicos> pilhaDeClientes = recuperar();
-            ClientesFisicos ultimoCliente = pilhaDeClientes.get(pilhaDeClientes.size()-1) ;
+            ArrayList<ModelosCarro> pilhaDeClientes = recuperar();
+            ModelosCarro ultimoCliente = pilhaDeClientes.get(pilhaDeClientes.size()-1) ;
             Integer lastId = Integer.parseInt(ultimoCliente.getId())+1;
-            ClientesFisicos clienteFisico = (ClientesFisicos) objeto;
-            if (clienteFisico.getId()=="")
+            ModelosCarro modelos = (ModelosCarro) objeto;
+            if (modelos.getId()=="")
             {
-            clienteFisico.setId(lastId.toString());
+            modelos.setId(lastId.toString());
             }
             FileWriter fw = new FileWriter(nomeDoArquivoNoDisco, true);
             BufferedWriter bw = new BufferedWriter(fw);
-            bw.append(clienteFisico.desmontarObjeto() + "\n");
+            bw.append(modelos.desmontarObjeto() + "\n");
             bw.flush();
             bw.close();
         } catch (Exception erro) {
             throw erro;
         }
     }
-    public String retornaArraycomoString(ArrayList<ClientesFisicos> lista)
+    public String retornaArraycomoString(ArrayList<ModelosCarro> lista)
      {
          String msg = "";
-                for (ClientesFisicos a :lista) {
+                for (ModelosCarro a :lista) {
                     
                   msg+= a.desmontarObjeto()+"\n";
                   
@@ -54,14 +58,14 @@ public class ClienteFisicoPersistencia implements CRUD {
         }
      return msg;
     }
-    public ArrayList<ClientesFisicos> recuperar() throws Exception {
+    public ArrayList<ModelosCarro> recuperar() throws Exception {
         try {
-            ArrayList<ClientesFisicos> pilhaDeClientes = new ArrayList<>();
+            ArrayList<ModelosCarro> pilhaDeClientes = new ArrayList<>();
             FileReader fr = new FileReader(nomeDoArquivoNoDisco);
             BufferedReader br = new BufferedReader(fr);
             String linha = "";
             while((linha=br.readLine())!=null){
-                ClientesFisicos objetoClientes = new ClientesFisicos();
+                ModelosCarro objetoClientes = new ModelosCarro();
                 objetoClientes.montarObjeto(linha);
                 pilhaDeClientes.add(objetoClientes);
             }
@@ -71,5 +75,4 @@ public class ClienteFisicoPersistencia implements CRUD {
             throw erro;
         }
     }
-
 }

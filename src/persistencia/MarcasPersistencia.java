@@ -11,42 +11,49 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import modelos.CRUD;
-import modelos.ClientesFisicos;
-public class ClienteFisicoPersistencia implements CRUD {
+import modelos.Marcas;
+import modelos.Motoristas;
 
-    
+/**
+ *
+ * @author Kevin
+ */
+public class MarcasPersistencia implements CRUD {
+
+
 
     private String nomeDoArquivoNoDisco = null;
 
-    public ClienteFisicoPersistencia(String nomeDoArquivoNoDisco) {
+    public MarcasPersistencia(String nomeDoArquivoNoDisco) {
         this.nomeDoArquivoNoDisco = nomeDoArquivoNoDisco;
     }
 
     @Override
-     public void incluir(Object objeto) throws Exception {
+    public void incluir(Object objeto) throws Exception {
         try {
             
-            ArrayList<ClientesFisicos> pilhaDeClientes = recuperar();
-            ClientesFisicos ultimoCliente = pilhaDeClientes.get(pilhaDeClientes.size()-1) ;
+            ArrayList<Marcas> pilhaDeClientes = recuperar();
+            Marcas ultimoCliente = pilhaDeClientes.get(pilhaDeClientes.size()-1) ;
             Integer lastId = Integer.parseInt(ultimoCliente.getId())+1;
-            ClientesFisicos clienteFisico = (ClientesFisicos) objeto;
-            if (clienteFisico.getId()=="")
+            Marcas marca = (Marcas) objeto;
+            if (marca.getId()=="")
             {
-            clienteFisico.setId(lastId.toString());
-            }
+            marca.setId(lastId.toString());
+            }            marca.setId(lastId.toString());
+
             FileWriter fw = new FileWriter(nomeDoArquivoNoDisco, true);
             BufferedWriter bw = new BufferedWriter(fw);
-            bw.append(clienteFisico.desmontarObjeto() + "\n");
+            bw.append(marca.desmontarObjeto() + "\n");
             bw.flush();
             bw.close();
         } catch (Exception erro) {
             throw erro;
         }
     }
-    public String retornaArraycomoString(ArrayList<ClientesFisicos> lista)
+    public String retornaArraycomoString(ArrayList<Marcas> lista)
      {
          String msg = "";
-                for (ClientesFisicos a :lista) {
+                for (Marcas a :lista) {
                     
                   msg+= a.desmontarObjeto()+"\n";
                   
@@ -54,14 +61,14 @@ public class ClienteFisicoPersistencia implements CRUD {
         }
      return msg;
     }
-    public ArrayList<ClientesFisicos> recuperar() throws Exception {
+    public ArrayList<Marcas> recuperar() throws Exception {
         try {
-            ArrayList<ClientesFisicos> pilhaDeClientes = new ArrayList<>();
+            ArrayList<Marcas> pilhaDeClientes = new ArrayList<>();
             FileReader fr = new FileReader(nomeDoArquivoNoDisco);
             BufferedReader br = new BufferedReader(fr);
             String linha = "";
             while((linha=br.readLine())!=null){
-                ClientesFisicos objetoClientes = new ClientesFisicos();
+                Marcas objetoClientes = new Marcas();
                 objetoClientes.montarObjeto(linha);
                 pilhaDeClientes.add(objetoClientes);
             }
@@ -71,5 +78,5 @@ public class ClienteFisicoPersistencia implements CRUD {
             throw erro;
         }
     }
-
+    
 }

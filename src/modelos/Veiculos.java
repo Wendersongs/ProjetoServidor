@@ -19,6 +19,7 @@ public class Veiculos extends Marca implements Dados{
     
     public Veiculos(){
         
+        this.id="";
         this.modeloVeiculo="";
         this.placa="";
         this.ano="";
@@ -30,8 +31,9 @@ public class Veiculos extends Marca implements Dados{
         
     }
     
-    public Veiculos(String placa , String ano , String estado , String categoria , String nomeDaMarca , String modeloVeiculo , String enderecoAnexo){
+    public Veiculos(String id , String placa , String ano , String estado , String categoria , String nomeDaMarca , String modeloVeiculo , String enderecoAnexo){
         
+        this.id=id;
         this.modeloVeiculo=modeloVeiculo;
         this.placa=placa;
         this.ano=ano;
@@ -48,20 +50,21 @@ public class Veiculos extends Marca implements Dados{
 
     @Override
     public String desmontarObjeto() {
-        return this.modeloVeiculo+";"+this.placa+";"+this.ano+";"+this.categoria +";"+ this.estado+";"+this.nomeDaMarca+";"+this.enderecoAnexo+";";
+        return this.id+";"+this.modeloVeiculo+";"+this.placa+";"+this.ano+";"+this.categoria +";"+ this.estado+";"+this.nomeDaMarca+";"+this.enderecoAnexo+";";
     }
 
     @Override
     public void montarObjeto(String stringDados) throws Exception {
 try {
             String vetorString[] = stringDados.split(";");
-            this.modeloVeiculo = vetorString[0];
-            this.placa = vetorString[1];
-            this.ano = vetorString[2];
-            this.categoria = vetorString[3];
-            this.estado = vetorString[4];
-            this.nomeDaMarca = vetorString[5];
-            this.enderecoAnexo = vetorString[6];
+            this.id=vetorString[0];
+            this.modeloVeiculo = vetorString[1];
+            this.placa = vetorString[2];
+            this.ano = vetorString[3];
+            this.categoria = vetorString[4];
+            this.estado = vetorString[5];
+            this.nomeDaMarca = vetorString[6];
+            this.enderecoAnexo = vetorString[7];
             
           
         } catch (Exception e) {
