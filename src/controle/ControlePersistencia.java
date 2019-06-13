@@ -20,7 +20,7 @@ public class ControlePersistencia {
    Utils util = new Utils();
     public String execOrdem(String dados) throws Exception{
         String[] informacao = dados.split("#");
-        ClienteJuridicoPersistencia clientePersistencia = new ClienteJuridicoPersistencia("C:\\desenvolvimento\\PessoaJuridica.txt");
+        ClienteJuridicoPersistencia clientePersistencia = new ClienteJuridicoPersistencia("C:\\Desenvolvimento\\PessoaJuridica.txt");
         ClientesJuridicos objetoClientes = new ClientesJuridicos();
         String msg="";
         switch (informacao[0]){
@@ -56,7 +56,7 @@ public class ControlePersistencia {
                 ArrayList<ClientesJuridicos> pilhaDeClientes = new ArrayList<>();
                 pilhaDeClientes = clientePersistencia.recuperar();
                 msg = clientePersistencia.retornaArraycomoString(pilhaDeClientes);
-                return util.limpaCaracteres(msg);
+                return msg;
             default: return "nenhuma opção";   
         }
     }
@@ -74,7 +74,7 @@ public class ControlePersistencia {
                 ArrayList<ClientesFisicos> pilhaDeClientes = new ArrayList<>();
                 pilhaDeClientes = clienteFisicoPersistencia.recuperar();
                 msg = clienteFisicoPersistencia.retornaArraycomoString(pilhaDeClientes);
-                return util.limpaCaracteres(msg);
+                return msg;
             default: return "nenhuma opção";   
         }
     }

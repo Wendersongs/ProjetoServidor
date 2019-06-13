@@ -42,19 +42,15 @@ public class ClienteJuridicoPersistencia implements CRUD {
                                 file.delete();
                                 FileWriter fw2 = new FileWriter(nomeDoArquivoNoDisco);
                                 BufferedWriter bw = new BufferedWriter(fw2);
-                                pilhaDeClientes.add(clienteJuri);
                                 for (ClientesJuridicos a : pilhaDeClientes) {
            
                                 if (clienteJuri.toString() == a.getId().toString()){
-                                     
+                                     pilhaDeClientes.remove(a);
                                      pilhaDeClientes.add(clienteJuri);
-   
-    
                 
                                     }
                                }
-                                
-                                
+                                                               
                                 
                                 bw.write(retornaArraycomoString(pilhaDeClientes));
                                 bw.flush();
