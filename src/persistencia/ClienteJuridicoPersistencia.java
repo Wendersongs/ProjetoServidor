@@ -20,14 +20,18 @@ public class ClienteJuridicoPersistencia implements CRUD {
     @Override
     public void incluir(Object objeto) throws Exception {
         try {
+            
             ArrayList<ClientesJuridicos> pilhaDeClientes = recuperar();
             ClientesJuridicos ultimoCliente = pilhaDeClientes.get(pilhaDeClientes.size()-1) ;
             Integer lastId = Integer.parseInt(ultimoCliente.getId())+1;
             ClientesJuridicos clienteJuri = (ClientesJuridicos) objeto;
+            if (clienteJuri.getId()=="")
+            {
             clienteJuri.setId(lastId.toString());
+            }
             FileWriter fw = new FileWriter(nomeDoArquivoNoDisco, true);
             BufferedWriter bw = new BufferedWriter(fw);
-            bw.append(util.limpaCaracteres(clienteJuri.desmontarObjeto()) + "\n");
+            bw.append(clienteJuri.desmontarObjeto() + "\n");
             bw.flush();
             bw.close();
         } catch (Exception erro) {
