@@ -23,6 +23,7 @@ public class ClienteJuridicoPersistencia implements CRUD {
         try {
             
             ArrayList<ClientesJuridicos> pilhaDeClientes = recuperar();
+            ArrayList<ClientesJuridicos> pilhaDeClientes2 = recuperar();
             ClientesJuridicos ultimoCliente = pilhaDeClientes.get(pilhaDeClientes.size()-1) ;
             Integer lastId = Integer.parseInt(ultimoCliente.getId())+1;
             ClientesJuridicos clienteJuri = (ClientesJuridicos) objeto;
@@ -43,16 +44,16 @@ public class ClienteJuridicoPersistencia implements CRUD {
                                 FileWriter fw2 = new FileWriter(nomeDoArquivoNoDisco);
                                 BufferedWriter bw = new BufferedWriter(fw2);
                                 for (ClientesJuridicos a : pilhaDeClientes) {
-           
-                                if (clienteJuri.toString() == a.getId().toString()){
-                                     pilhaDeClientes.remove(a);
-                                     pilhaDeClientes.add(clienteJuri);
+                                int d=0;
+                                if (clienteJuri.equals(a) ){
+                                     pilhaDeClientes2.remove(a);
+                                     pilhaDeClientes2.add(clienteJuri);
                 
                                     }
                                }
                                                                
                                 
-                                bw.write(retornaArraycomoString(pilhaDeClientes));
+                                bw.write(retornaArraycomoString(pilhaDeClientes2));
                                 bw.flush();
                                 bw.close();
                                 //fw2.write();

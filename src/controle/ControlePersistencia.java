@@ -24,7 +24,7 @@ public class ControlePersistencia {
         ClientesJuridicos objetoClientes = new ClientesJuridicos();
         String msg="";
         switch (informacao[0]){
-            case "ClientesJuridicos": msg=ctrlPersistenciaClientes(informacao[1], informacao[2]);
+                case "ClientesJuridicos": msg=ctrlPersistenciaClientes(informacao[1], informacao[2]);
             return msg;
             case "ClientesFisicos": ctrlPersistenciaClientesFisicos(informacao[1], informacao[2]);
             return msg;
