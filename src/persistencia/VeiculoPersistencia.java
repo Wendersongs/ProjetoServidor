@@ -5,12 +5,15 @@
  */
 package persistencia;
 
+import controle.Utils;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import modelos.CRUD;
+import modelos.Veiculos;
 import modelos.Veiculos;
 
 /**
@@ -18,8 +21,9 @@ import modelos.Veiculos;
  * @author Kevin
  */
 public class VeiculoPersistencia implements CRUD {
+    Utils util = new Utils();
 
-private String nomeDoArquivoNoDisco = null;
+    private String nomeDoArquivoNoDisco = null;
 
     public VeiculoPersistencia(String nomeDoArquivoNoDisco) {
         this.nomeDoArquivoNoDisco = nomeDoArquivoNoDisco;
@@ -30,18 +34,43 @@ private String nomeDoArquivoNoDisco = null;
         try {
             
             ArrayList<Veiculos> pilhaDeClientes = recuperar();
+            ArrayList<Veiculos> pilhaDeClientes2 = recuperar();
             Veiculos ultimoCliente = pilhaDeClientes.get(pilhaDeClientes.size()-1) ;
             Integer lastId = Integer.parseInt(ultimoCliente.getId())+1;
             Veiculos veiculo = (Veiculos) objeto;
-            if (veiculo.getId()=="")
+            if ("".equals(veiculo.getId()))
             {
             veiculo.setId(lastId.toString());
-            }
-            FileWriter fw = new FileWriter(nomeDoArquivoNoDisco, true);
+             FileWriter fw = new FileWriter(nomeDoArquivoNoDisco, true);
             BufferedWriter bw = new BufferedWriter(fw);
             bw.append(veiculo.desmontarObjeto() + "\n");
             bw.flush();
             bw.close();
+            }
+            else {
+                File file = new File(nomeDoArquivoNoDisco);
+
+                    if ( file.exists()) {
+                                file.delete();
+                                FileWriter fw2 = new FileWriter(nomeDoArquivoNoDisco);
+                                BufferedWriter bw = new BufferedWriter(fw2);
+                                for (Veiculos a : pilhaDeClientes) {
+                                int d=0;
+                                if (veiculo.equals(a) ){
+                                     pilhaDeClientes2.remove(a);
+                                     pilhaDeClientes2.add(veiculo);
+                
+                                    }
+                               }
+                                                               
+                                
+                                bw.write(retornaArraycomoString(pilhaDeClientes2));
+                                bw.flush();
+                                bw.close();
+                                //fw2.write();
+                                        }
+            }
+          
         } catch (Exception erro) {
             throw erro;
         }
@@ -73,5 +102,5 @@ private String nomeDoArquivoNoDisco = null;
         } catch (Exception erro) {
             throw erro;
         }
-    }   
+    }
 }

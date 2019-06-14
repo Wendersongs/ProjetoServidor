@@ -13,15 +13,19 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import modelos.CRUD;
-import modelos.ClientesFisicos;
-import modelos.Motoristas;
-import modelos.Motoristas;
-public class MotoristaPersistencia implements CRUD {
+import modelos.ContratoLocacao;
+import modelos.ContratoLocacao;
+
+/**
+ *
+ * @author Kevin
+ */
+public class ContratoLocacaoPersistencia implements CRUD {
     Utils util = new Utils();
 
     private String nomeDoArquivoNoDisco = null;
 
-    public MotoristaPersistencia(String nomeDoArquivoNoDisco) {
+    public ContratoLocacaoPersistencia(String nomeDoArquivoNoDisco) {
         this.nomeDoArquivoNoDisco = nomeDoArquivoNoDisco;
     }
 
@@ -29,17 +33,17 @@ public class MotoristaPersistencia implements CRUD {
     public void incluir(Object objeto) throws Exception {
         try {
             
-            ArrayList<Motoristas> pilhaDeClientes = recuperar();
-            ArrayList<Motoristas> pilhaDeClientes2 = recuperar();
-            Motoristas ultimoCliente = pilhaDeClientes.get(pilhaDeClientes.size()-1) ;
+            ArrayList<ContratoLocacao> pilhaDeClientes = recuperar();
+            ArrayList<ContratoLocacao> pilhaDeClientes2 = recuperar();
+            ContratoLocacao ultimoCliente = pilhaDeClientes.get(pilhaDeClientes.size()-1) ;
             Integer lastId = Integer.parseInt(ultimoCliente.getId())+1;
-            Motoristas motorista = (Motoristas) objeto;
-            if ("".equals(motorista.getId()))
+            ContratoLocacao locacao = (ContratoLocacao) objeto;
+            if ("".equals(locacao.getId()))
             {
-            motorista.setId(lastId.toString());
+            locacao.setId(lastId.toString());
              FileWriter fw = new FileWriter(nomeDoArquivoNoDisco, true);
             BufferedWriter bw = new BufferedWriter(fw);
-            bw.append(motorista.desmontarObjeto() + "\n");
+            bw.append(locacao.desmontarObjeto() + "\n");
             bw.flush();
             bw.close();
             }
@@ -50,11 +54,11 @@ public class MotoristaPersistencia implements CRUD {
                                 file.delete();
                                 FileWriter fw2 = new FileWriter(nomeDoArquivoNoDisco);
                                 BufferedWriter bw = new BufferedWriter(fw2);
-                                for (Motoristas a : pilhaDeClientes) {
+                                for (ContratoLocacao a : pilhaDeClientes) {
                                 int d=0;
-                                if (motorista.equals(a) ){
+                                if (locacao.equals(a) ){
                                      pilhaDeClientes2.remove(a);
-                                     pilhaDeClientes2.add(motorista);
+                                     pilhaDeClientes2.add(locacao);
                 
                                     }
                                }
@@ -71,10 +75,10 @@ public class MotoristaPersistencia implements CRUD {
             throw erro;
         }
     }
-    public String retornaArraycomoString(ArrayList<Motoristas> lista)
+    public String retornaArraycomoString(ArrayList<ContratoLocacao> lista)
      {
          String msg = "";
-                for (Motoristas a :lista) {
+                for (ContratoLocacao a :lista) {
                     
                   msg+= a.desmontarObjeto()+"\n";
                   
@@ -82,14 +86,14 @@ public class MotoristaPersistencia implements CRUD {
         }
      return msg;
     }
-    public ArrayList<Motoristas> recuperar() throws Exception {
+    public ArrayList<ContratoLocacao> recuperar() throws Exception {
         try {
-            ArrayList<Motoristas> pilhaDeClientes = new ArrayList<>();
+            ArrayList<ContratoLocacao> pilhaDeClientes = new ArrayList<>();
             FileReader fr = new FileReader(nomeDoArquivoNoDisco);
             BufferedReader br = new BufferedReader(fr);
             String linha = "";
             while((linha=br.readLine())!=null){
-                Motoristas objetoClientes = new Motoristas();
+                ContratoLocacao objetoClientes = new ContratoLocacao();
                 objetoClientes.montarObjeto(linha);
                 pilhaDeClientes.add(objetoClientes);
             }
@@ -99,5 +103,4 @@ public class MotoristaPersistencia implements CRUD {
             throw erro;
         }
     }
-
 }

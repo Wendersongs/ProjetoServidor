@@ -3,6 +3,7 @@ import comunicacao.ServidorTCP;
 import java.util.ArrayList;
 import modelos.ClientesFisicos;
 import modelos.ClientesJuridicos;
+import modelos.ContratoLocacao;
 import modelos.ContratoVenda;
 import modelos.Marcas;
 import modelos.ModelosCarro;
@@ -10,6 +11,7 @@ import modelos.Motoristas;
 import modelos.Veiculos;
 import persistencia.ClienteFisicoPersistencia;
 import persistencia.ClienteJuridicoPersistencia;
+import persistencia.ContratoLocacaoPersistencia;
 import persistencia.ContratoVendaPersistencia;
 import persistencia.MarcasPersistencia;
 import persistencia.ModelosCarroPersistencia;
@@ -26,17 +28,19 @@ public class ControlePersistencia {
         switch (informacao[0]){
                 case "ClientesJuridicos": msg=ctrlPersistenciaClientes(informacao[1], informacao[2]);
             return msg;
-            case "ClientesFisicos": ctrlPersistenciaClientesFisicos(informacao[1], informacao[2]);
+            case "ClientesFisicos": msg =ctrlPersistenciaClientesFisicos(informacao[1], informacao[2]);
             return msg;
-            case "Motoristas": ctrlPersistenciaMotoristas(informacao[1], informacao[2]);
+            case "Motoristas": msg =ctrlPersistenciaMotoristas(informacao[1], informacao[2]);
             return msg;
-            case "Marcas": ctrlPersistenciaMarcas(informacao[1], informacao[2]);
+            case "Marcas": msg =ctrlPersistenciaMarcas(informacao[1], informacao[2]);
             return msg;
-            case "ModelosCarro": ctrlPersistenciaModelosCarro(informacao[1], informacao[2]);
+            case "ModelosCarro": msg =ctrlPersistenciaModelosCarro(informacao[1], informacao[2]);
             return msg;
-            case "Veiculos": ctrlPersistenciaVeiculos(informacao[1], informacao[2]);
+            case "Veiculos": msg = ctrlPersistenciaVeiculos(informacao[1], informacao[2]);
             return msg;
-            case "ContratoVenda": ctrlPersistenciaVendas(informacao[1], informacao[2]);
+            case "ContratoVenda": msg =ctrlPersistenciaVendas(informacao[1], informacao[2]);
+            return msg;
+            case "ContratoLocacao": msg =ctrlPersistenciaLocacao(informacao[1], informacao[2]);
             return msg;
             default: return "Nenhum caso";
         }
@@ -158,7 +162,7 @@ public class ControlePersistencia {
                 ArrayList<Veiculos> pilhaDeClientes = new ArrayList<>();
                 pilhaDeClientes = veiculos.recuperar();
                 msg = veiculos.retornaArraycomoString(pilhaDeClientes);
-                return util.limpaCaracteres(msg);
+                return msg;
             default: return "nenhuma opção";  
         }
        }
@@ -179,6 +183,27 @@ public class ControlePersistencia {
                 ArrayList<ContratoVenda> pilhaDeClientes = new ArrayList<>();
                 pilhaDeClientes = venda.recuperar();
                 msg = venda.retornaArraycomoString(pilhaDeClientes);
+                return util.limpaCaracteres(msg);
+            default: return "nenhuma opção";  
+        }
+       }
+          
+          public String ctrlPersistenciaLocacao(String opcao, String dados) throws Exception{
+        ContratoLocacaoPersistencia locacao = new ContratoLocacaoPersistencia("C:\\desenvolvimento\\ContratoLocacao.txt");
+       
+        ContratoLocacao objetoClientes = new ContratoLocacao();
+            String msg ="";
+        switch(opcao){
+            
+            case "1":
+                objetoClientes.montarObjeto(dados);
+                locacao.incluir(objetoClientes);
+                msg = "incluído com sucesso";
+                return msg;
+            case "2":
+                ArrayList<ContratoLocacao> pilhaDeClientes = new ArrayList<>();
+                pilhaDeClientes = locacao.recuperar();
+                msg = locacao.retornaArraycomoString(pilhaDeClientes);
                 return util.limpaCaracteres(msg);
             default: return "nenhuma opção";  
         }

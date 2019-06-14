@@ -44,13 +44,61 @@ public class Veiculos extends Marca implements Dados{
         
         
     }
+
+    public String getModeloVeiculo() {
+        return modeloVeiculo;
+    }
+
+    public void setModeloVeiculo(String modeloVeiculo) {
+        this.modeloVeiculo = modeloVeiculo;
+    }
+
+    public String getPlaca() {
+        return placa;
+    }
+
+    public void setPlaca(String placa) {
+        this.placa = placa;
+    }
+
+    public String getAno() {
+        return ano;
+    }
+
+    public void setAno(String ano) {
+        this.ano = ano;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public String getEnderecoAnexo() {
+        return enderecoAnexo;
+    }
+
+    public void setEnderecoAnexo(String enderecoAnexo) {
+        this.enderecoAnexo = enderecoAnexo;
+    }
     
     
     
 
     @Override
     public String desmontarObjeto() {
-        return this.id+";"+this.modeloVeiculo+";"+this.placa+";"+this.ano+";"+this.categoria +";"+ this.estado+";"+this.nomeDaMarca+";"+this.enderecoAnexo+";";
+        return this.id+";"+this.placa+";"+this.ano+";"+this.estado+";"+this.categoria +";"+ this.nomeDaMarca+";"+this.modeloVeiculo+";"+this.enderecoAnexo+";";
     }
 
     @Override
@@ -58,12 +106,12 @@ public class Veiculos extends Marca implements Dados{
 try {
             String vetorString[] = stringDados.split(";");
             this.id=vetorString[0];
-            this.modeloVeiculo = vetorString[1];
-            this.placa = vetorString[2];
-            this.ano = vetorString[3];
+            this.placa = vetorString[1];
+            this.ano = vetorString[2];
+            this.estado = vetorString[3];
             this.categoria = vetorString[4];
-            this.estado = vetorString[5];
-            this.nomeDaMarca = vetorString[6];
+            this.nomeDaMarca = vetorString[5];
+            this.modeloVeiculo = vetorString[6];
             this.enderecoAnexo = vetorString[7];
             
           
