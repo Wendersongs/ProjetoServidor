@@ -1,0 +1,10 @@
+6;00.000.000/0000;Razao Social;Nome de Fantasia;333333333333;Endereco;44;Bairro;cidade;GO;11111111;email@email;22222222222
+7;00.000.000/0000;Razao Social;Nome de Fantasia;333333333333;Endereco;44;Bairro;cidade;GO;11111111;email@email;22222222222
+8;00.000.000/0000;Razao Social;Nome de Fantasia;333333333333;Endereco;44;Bairro;cidade;GO;11111111;email@email;22222222222
+10;00.000.000/0000;Razao Social;Nome de Fantasia;333333333333;Endereco;44;Bairro;cidade;GO;11111-111;email@email;(22)2222-22222
+9;00.000.000/0000;Razao Social;Nome de Fantasia;333333333333;Endereco;44;Bairro;cidade;GO;11111-111;email@email;(22)2222-22222
+5;00.000.000/0000;Razao Social;Nome de Fantasia;333333333333;Endereco123;44;Bairro;cidade;GO;11111-111;email@email;(22)2222-22222
+4;00.000.000/0000;Razao Social;Nome de Fantasia;333333333333;Endereco;44;Bairro1111;cidade;GO;11111-111;email@email;(22)2222-22222
+2;00.000.000/0000;Razao Social;Nome de Fantasia;333333333333;Endereco;44;aaaaa;Goiania;GO;11111-111;email@email;(22)2222-22222
+9;00.000.000/0000;Razao Social;Nome de Fantasia;333333333333;Endereco;44;aaaaa;Goiania;GO;11111-111;email@email;(22)2222-22222
+10;11.111.111/1111;3333333333;aaaaaaaaaaaaaaaaaa;222222222222; ddddddd; ddd; aaaaa; sssssss; ss;44444-444; ccccccccc;(11)1111-11111

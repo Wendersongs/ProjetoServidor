@@ -1,0 +1,3 @@
+1;aaa-1234;2006;Disponivel;Economico;Chevrolet;12345;A;aaa-1111;2006;Vendido;Economico com Ar;comboBoxChanged;Item 1;A;
+2;aaa-1232;2009;Disponivel;Economico com Ar;Chevrolet;Item 1;A;
+3;aaa-2222;2006;Disponivel;Economico;Chevrolet;Item 1;A;
