@@ -22,8 +22,7 @@ public class ControlePersistencia {
    Utils util = new Utils();
     public String execOrdem(String dados) throws Exception{
         String[] informacao = dados.split("#");
-        ClienteJuridicoPersistencia clientePersistencia = new ClienteJuridicoPersistencia("C:\\Desenvolvimento\\PessoaJuridica.txt");
-        ClientesJuridicos objetoClientes = new ClientesJuridicos();
+        
         String msg="";
         switch (informacao[0]){
                 case "ClientesJuridicos": msg=ctrlPersistenciaClientes(informacao[1], informacao[2]);
