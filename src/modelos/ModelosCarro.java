@@ -13,11 +13,13 @@ public class  ModelosCarro extends Marcas  implements Dados{
         private String nomeDoModelo ;
         
      public ModelosCarro(){
-
-         this.id="";   
+         this.id="";
          this.nomeDoModelo="" ;
          this.nomeDaMarca="";
+         this.enderecoAnexoMarca="";
 }
+
+ 
 
     /**
      * @return the nomeDoModelo
@@ -33,15 +35,15 @@ public class  ModelosCarro extends Marcas  implements Dados{
         this.nomeDoModelo = nomeDoModelo;
     }
     
-    public ModelosCarro(String id , String nomeDoModelo , String nomeDaMarca){
+    public ModelosCarro(String id , String nomeDoModelo , String nomeDaMarca , String enderecoAnexo){
         this.id=id;
         this.nomeDoModelo=nomeDoModelo;
         this.nomeDaMarca=nomeDaMarca;
-        
+        this.enderecoAnexoMarca=enderecoAnexo;
     }
          @Override
     public String desmontarObjeto() {
-        return this.id+";"+this.nomeDoModelo+";"+this.nomeDaMarca+"#";
+        return this.id+";"+this.nomeDoModelo+";"+this.nomeDaMarca+";"+this.enderecoAnexoMarca+"#";
     }
 
     @Override
@@ -51,6 +53,7 @@ try {
             this.id=vetorString[0];
             this.nomeDoModelo = vetorString[1];
             this.nomeDaMarca= vetorString[2];
+            this.enderecoAnexoMarca=vetorString[3];
             
             
           
