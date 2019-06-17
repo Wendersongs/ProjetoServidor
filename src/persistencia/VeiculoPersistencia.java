@@ -29,6 +29,10 @@ public class VeiculoPersistencia implements CRUD {
         this.nomeDoArquivoNoDisco = nomeDoArquivoNoDisco;
     }
 
+    VeiculoPersistencia() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     @Override
     public void incluir(Object objeto) throws Exception {
         try {

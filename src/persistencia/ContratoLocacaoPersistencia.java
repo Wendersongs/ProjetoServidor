@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import modelos.CRUD;
 import modelos.ContratoLocacao;
 import modelos.ContratoLocacao;
+import modelos.Veiculos;
+import persistencia.VeiculoPersistencia;
 
 /**
  *
@@ -22,6 +24,7 @@ import modelos.ContratoLocacao;
  */
 public class ContratoLocacaoPersistencia implements CRUD {
     Utils util = new Utils();
+    VeiculoPersistencia vp = new VeiculoPersistencia("C:\\desenvolvimento\\Veiculos.txt");
 
     private String nomeDoArquivoNoDisco = null;
 
@@ -45,6 +48,7 @@ public class ContratoLocacaoPersistencia implements CRUD {
             BufferedWriter bw = new BufferedWriter(fw);
             bw.append(locacao.desmontarObjeto() + "\n");
             bw.flush();
+                alteraCarro(locacao.getIdVeiculo());
             bw.close();
             }
             else {
@@ -94,6 +98,69 @@ public class ContratoLocacaoPersistencia implements CRUD {
             String linha = "";
             while((linha=br.readLine())!=null){
                 ContratoLocacao objetoClientes = new ContratoLocacao();
+                objetoClientes.montarObjeto(linha);
+                pilhaDeClientes.add(objetoClientes);
+            }
+            br.close();
+            return pilhaDeClientes;
+        } catch (Exception erro) {
+            throw erro;
+        }
+    }
+    public String alteraCarro(String idCarro) throws Exception{
+        
+     ArrayList<Veiculos> pilhaDeClientes = new ArrayList<>();
+     ArrayList<Veiculos> pilhaDeClientes2 = new ArrayList<>();
+     Veiculos veiculo = new Veiculos();
+     
+       try{
+           pilhaDeClientes = vp.recuperar();
+           pilhaDeClientes2 = vp.recuperar();
+           for (Veiculos a : pilhaDeClientes) {
+               if (a.getId().equals(idCarro)){
+               veiculo=a;
+               }
+               veiculo.setEstado("Indisponivel");
+           }
+        File file = new File("C:\\desenvolvimento\\Veiculos.txt");
+
+                    if ( file.exists()) {
+                                file.delete();
+                                FileWriter fw2 = new FileWriter("C:\\desenvolvimento\\Veiculos.txt");
+                                BufferedWriter bw = new BufferedWriter(fw2);
+                                for (Veiculos a : pilhaDeClientes) {
+                                
+                                if (veiculo.equals(a) ){
+                                     pilhaDeClientes2.remove(a);
+                                     pilhaDeClientes2.add(veiculo);
+                
+                                    }
+                               }
+                                                               
+                                
+                                bw.write(vp.retornaArraycomoString(pilhaDeClientes2));
+                                bw.flush();
+                                bw.close();
+                                //fw2.write();
+                                        }
+            
+            
+        } catch (Exception erro) {
+            throw erro;
+        }
+    
+    
+    return "ok";
+    }
+    
+        public ArrayList<Veiculos> recuperarVeiculo() throws Exception {
+        try {
+            ArrayList<Veiculos> pilhaDeClientes = new ArrayList<>();
+            FileReader fr = new FileReader("C:\\desenvolvimento\\Veiculos.txt");
+            BufferedReader br = new BufferedReader(fr);
+            String linha = "";
+            while((linha=br.readLine())!=null){
+                Veiculos objetoClientes = new Veiculos();
                 objetoClientes.montarObjeto(linha);
                 pilhaDeClientes.add(objetoClientes);
             }
