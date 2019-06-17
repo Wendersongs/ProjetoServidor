@@ -120,27 +120,30 @@ public class ContratoLocacaoPersistencia implements CRUD {
                if (a.getId().equals(idCarro)){
                veiculo=a;
                }
-               veiculo.setEstado("Indisponivel");
+              
            }
         File file = new File("C:\\desenvolvimento\\Veiculos.txt");
 
                     if ( file.exists()) {
                                 file.delete();
                                 FileWriter fw2 = new FileWriter("C:\\desenvolvimento\\Veiculos.txt");
-                                BufferedWriter bw = new BufferedWriter(fw2);
+                                BufferedWriter bww = new BufferedWriter(fw2);
                                 for (Veiculos a : pilhaDeClientes) {
                                 
                                 if (veiculo.equals(a) ){
+                                    
                                      pilhaDeClientes2.remove(a);
+                                     
+                                     veiculo.setEstado("Indisponivel");
                                      pilhaDeClientes2.add(veiculo);
                 
                                     }
                                }
                                                                
                                 
-                                bw.write(vp.retornaArraycomoString(pilhaDeClientes2));
-                                bw.flush();
-                                bw.close();
+                                bww.write(vp.retornaArraycomoString(pilhaDeClientes2));
+                                bww.flush();
+                                bww.close();
                                 //fw2.write();
                                         }
             
